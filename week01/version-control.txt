@@ -1,0 +1,19 @@
+Version Control is a system that allows developers to keep a record of changes
+of whatever code they wrote. It allows developers to manage events, meaning that they can know 
+who made the changes and when, also, in case of a mistake, they can go back to
+a previous version of the code.
+
+One of its advantages is that when working on a team, developers 
+can make changes to the code while avoiding overwriting other people's code.
+
+An example of version control could be when you make a change to your code in
+a local environment; If you want your team to have the new version, you will have
+to upload the new code to the web. Github is a good place to store repositories/projects.
+If using Git Bash, you will have to use the following commands (Assuming the file you changed
+is called index.html):
+
+git add index.html // Add the file to the stage area to be ready for a commit
+git status (optional just to make sure everything is good) // Check the status/changes in the project. You can use it to make sure the changes were added
+git commit -m "Add search feature to navBar" // This basically adds a custom message about the changes that were made
+git push // This is the final step to push your changes to the web, in this example, Github, so that your whole team can then pull those changes
+
