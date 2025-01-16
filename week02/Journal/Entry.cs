@@ -1,3 +1,6 @@
+using System.IO;
+
+
 public class Entry
 {
     public string _date;
@@ -6,7 +9,12 @@ public class Entry
 
     public void Display()
     {
-        Console.WriteLine($"Date: {_date} - Prompt: {_promptText}");
-        Console.WriteLine(_entryText);
+        string fileName = "journal.txt";
+        string[] lines = System.IO.File.ReadAllLines(fileName);
+
+        foreach (string line in lines)
+        {
+            Console.WriteLine(line);
+        }
     }
 }
