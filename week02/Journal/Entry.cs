@@ -1,6 +1,3 @@
-using System.IO;
-
-
 public class Entry
 {
     public string _date;

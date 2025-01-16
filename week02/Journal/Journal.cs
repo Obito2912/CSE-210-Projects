@@ -1,3 +1,5 @@
+using System.IO; 
+
 public class Journal
 {
     public List<Entry> _entries;
@@ -14,6 +16,13 @@ public class Journal
 
     public void SaveToFile(string file)
     {
+        Console.WriteLine("What is the filename?");
+        string filename = Console.ReadLine();
+
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            outputFile.WriteLine();
+        }
 
     }
 
