@@ -6,12 +6,7 @@ public class Entry
 
     public void Display()
     {
-        string fileName = "journal.txt";
-        string[] lines = System.IO.File.ReadAllLines(fileName);
-
-        foreach (string line in lines)
-        {
-            Console.WriteLine(line);
-        }
+        Console.WriteLine($"{_date}{_promptText}{_entryText}");
+        Console.WriteLine();
     }
 }
