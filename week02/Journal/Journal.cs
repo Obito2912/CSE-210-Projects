@@ -17,18 +17,6 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string file)
-    {
-        using (StreamWriter outputFile = new StreamWriter(file))
-        {
-            foreach(Entry entry in _entries)
-            {
-            outputFile.WriteLine($"\nDate: {entry._date} - Prompt: {entry._promptText}\n{entry._entryText}");
-            }
-        }
-
-    }
-
     public void LoadFromFile(string file)
     {
         string[] lines = File.ReadAllLines(file);
@@ -43,4 +31,18 @@ public class Journal
             _entries.Add(entry);
         }
     }
+
+    public void SaveToFile(string file)
+    {
+        using (StreamWriter outputFile = new StreamWriter(file))
+        {
+            foreach (Entry entry in _entries)
+            {
+                outputFile.WriteLine($"Date: {entry._date} - Prompt: {entry._promptText}\n{entry._entryText}\n");
+            }
+        }
+
+    }
+
+
 }

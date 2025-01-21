@@ -1,4 +1,9 @@
 using System;
+using System.Threading.Tasks.Dataflow;
+
+// I added another else if statement at the end of my do while loop to advice the user to type
+// a number between 1 and 5 in case the user types a letter by mistake or a number that is 
+// not in the options.
 
 class Program
 {
@@ -63,6 +68,12 @@ class Program
                 journal.SaveToFile(filename);
             }
             
+            else if (!new[] {"1", "2", "3", "4", "5"}.Contains(userChoice))
+            {
+                Console.WriteLine($"\nPlease type a number between 1 and " +
+                "4 in order for\nthe program to do something. Otherwise type 5 to quit.");
+            }
+
         } while (userChoice != "5");
 
     }
