@@ -25,9 +25,10 @@ class Program
 
         if (scripture.IsCompletelyHidden())
         {
+            Console.Clear();
+            Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine("All words are hidden. Press Enter to exit.");
             Console.ReadLine();
-            Console.Clear();
             break;
         }
     }
