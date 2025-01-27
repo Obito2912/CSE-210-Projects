@@ -1,0 +1,33 @@
+// Explain the meaning of Encapsulation:
+
+Encapsulation is the ability to make available attributes or methods in a global scope
+only when it's really necessary on our program.
+
+When implemented correctly, it prevents the programmer to modify things that
+shouldn't be modified which can cause a lot of problems in some situations.
+
+If I have a class with two attributes, "name" and "lastName", and I have a method
+to display both "DisplayFullName". We don't really need these attributes in our Main
+function, so we can apply encapsulation and set them as private and still be 
+able to use them inside our "DisplayFullName" method which will be public and in
+the same class, therefore, these attributes will be available to it.
+
+    private Reference _reference;
+    private List<Word> _words;
+
+    public Scripture(Reference Reference, string text)
+    {
+        _reference = Reference;
+        _words = new List<Word>();
+        foreach (var word in text.Split(" "))
+        {
+            _words.Add(new Word(word));
+        }
+    }
+
+Above is an example of part of my code using encapsulation. My two variables are
+private and the constructor is public. I could make them public but then I would have to
+write more code in my Main function and it wouldn't look very clean. Also, if I did,
+I would be able to modify my attributes in the class from my Main function which is not a good
+idea because as I explained, it would cause issues with methods and constructors in
+the future if the programmer is not careful, so it's best to avoid it. 
