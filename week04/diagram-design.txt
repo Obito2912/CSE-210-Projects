@@ -1,0 +1,29 @@
+=============================================== YouTubeVideos ===============================================
+
+class Video
+
+    public string _title;
+    public string _author;
+    public int _length;
+    public List<Comment> _comments;
+
+    Video(string title, string author, int length)
+
+    int NumberOfComments()
+
+class Comment
+
+    public string _name;
+    public string _comment;
+
+    Comment(string name, string comment)
+
+    string CommentInfo()
+
+
+
+
+
+
+
+=============================================== ONLINE ORDERING ===============================================
