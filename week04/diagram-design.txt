@@ -22,8 +22,51 @@ class Comment
 
 
 
+============================================== ONLINE ORDERING ==============================================
+
+class Product
+    private string _streetAddress;
+    private string _city;
+    private string _stateProvince;
+    private string _country;
+
+    Address(string street, string city, string state, string country)
+
+    bool IsUSA()
+    string GetAddress()
 
 
+class Customer
+    private string _name;
+    private Address _address;
+
+    public Customer(string name, Address address)
+
+    bool LivesInUs()
+    string GetName()
+    Address GetAddress()
 
 
-=============================================== ONLINE ORDERING ===============================================
+class Address
+    private string _name;
+    private string _productId;
+    private decimal _price;
+    private int _quantity;
+
+    Product(string name, string productId, decimal price, int quantity)
+
+    decimal TotalCost()
+    string GetName()
+    string GetProductId()
+
+
+class Order
+    private List<Product> _products;
+    private Customer _customer;
+
+    Order(Customer customer)
+
+    void AddProduct(Product product)
+    decimal AddShippingCostToOrder()
+    string PackingLabel()
+    string ShippingLabel()
