@@ -1,0 +1,72 @@
+=============================================== YouTubeVideos ===============================================
+
+class Video
+
+    public string _title;
+    public string _author;
+    public int _length;
+    public List<Comment> _comments;
+
+    Video(string title, string author, int length)
+
+    int NumberOfComments()
+
+class Comment
+
+    public string _name;
+    public string _comment;
+
+    Comment(string name, string comment)
+
+    string CommentInfo()
+
+
+
+============================================== ONLINE ORDERING ==============================================
+
+class Product
+    private string _streetAddress;
+    private string _city;
+    private string _stateProvince;
+    private string _country;
+
+    Address(string street, string city, string state, string country)
+
+    bool IsUSA()
+    string GetAddress()
+
+
+class Customer
+    private string _name;
+    private Address _address;
+
+    public Customer(string name, Address address)
+
+    bool LivesInUs()
+    string GetName()
+    Address GetAddress()
+
+
+class Address
+    private string _name;
+    private string _productId;
+    private decimal _price;
+    private int _quantity;
+
+    Product(string name, string productId, decimal price, int quantity)
+
+    decimal TotalCost()
+    string GetName()
+    string GetProductId()
+
+
+class Order
+    private List<Product> _products;
+    private Customer _customer;
+
+    Order(Customer customer)
+
+    void AddProduct(Product product)
+    decimal AddShippingCostToOrder()
+    string PackingLabel()
+    string ShippingLabel()
