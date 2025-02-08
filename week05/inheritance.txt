@@ -1,0 +1,5 @@
+===== Explain the meaning of Inheritance =====
+
+Is the ability that allow subclasses to obtain the attributes
+and methods from their parent class using dot notation after
+creating an instance of the subclass.
