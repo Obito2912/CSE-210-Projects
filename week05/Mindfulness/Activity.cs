@@ -55,21 +55,50 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        
+        Console.WriteLine($"Welcome to the {GetName()}");
     }
 
     public void DisplayEndingMessage()
     {
-
+        Console.WriteLine("Well Done!!");
+        Console.WriteLine();
+        Console.WriteLine($"You have completed another {GetDuration} of the {GetName}.");
     }
 
     public void ShowSpinner(int seconds)
     {
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(5);
+        DateTime currentTime;
         
+        do
+        {
+            Console.Write("\\");
+            Thread.Sleep(seconds);
+            Console.Write("\b \b");
+            Console.Write("|");
+            Thread.Sleep(seconds);
+            Console.Write("\b \b");
+            Console.Write("/");
+            Thread.Sleep(seconds);
+            Console.Write("\b \b");
+            Console.Write("—");
+            Thread.Sleep(seconds);
+            Console.Write("\b \b");
+            currentTime = DateTime.Now;
+        } while (currentTime < futureTime);
+
     }
 
     public void ShowCountDown(int seconds)
     {
-        
+        int[] numbers = [5, 4, 3, 2, 1];
+
+        for (int i = 0; i < GetDuration(); i++)
+        {
+            Console.Write(item);
+            Thread.Sleep(seconds);
+            Console.Write("\b \b");
+        }
     }
 }
