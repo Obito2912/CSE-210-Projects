@@ -43,26 +43,16 @@ public class Activity
         _duration = duration;
     }
 
-    // Or I could use Expression-bodied getters and setters for cleaner code
-    // public string GetName() => _name;
-    // public void SetName(string name) => _name = name;
-
-    // public string GetDescription() => _description;
-    // public void SetDescription(string description) => _description = description;
-
-    // public int GetDuration() => _duration;
-    // public void SetDuration(int duration) => _duration = duration;
-
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"Welcome to the {GetName()}");
+        Console.WriteLine($"\nWelcome to the {GetName()}");
     }
 
     public void DisplayEndingMessage()
     {
         Console.WriteLine("Well Done!!");
         Console.WriteLine();
-        Console.WriteLine($"You have completed another {GetDuration} of the {GetName}.");
+        Console.WriteLine($"You have completed another {GetDuration()} seconds of the {GetName()}.");
     }
 
     public void ShowSpinner(int seconds)
@@ -92,11 +82,10 @@ public class Activity
 
     public void ShowCountDown(int seconds)
     {
-        int[] numbers = [5, 4, 3, 2, 1];
 
-        for (int i = 0; i < GetDuration(); i++)
+        for (int i = 5; i > 0; i--)
         {
-            Console.Write(item);
+            Console.Write(i);
             Thread.Sleep(seconds);
             Console.Write("\b \b");
         }

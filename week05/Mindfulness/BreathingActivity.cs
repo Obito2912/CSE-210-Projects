@@ -7,27 +7,34 @@ public class BreathingActivity : Activity
 
     public void Run()
     {
-        string name = GetName();
         string description = GetDescription();
         // int duration = GetDuration();
 
-        Console.WriteLine($"Welcome ot the {name}.\n");
+        DisplayStartingMessage();
         Console.WriteLine($"{description}\n");
 
         Console.Write("How long, in seconds, would you like for your session? ");
         int duration = int.Parse(Console.ReadLine());
+        SetDuration(duration);
 
         Console.WriteLine("Get ready...");
         ShowSpinner(500);
         Console.WriteLine();
         Console.WriteLine();
 
-        Console.Write("Breathe in...");
-        ShowCountDown(5);
-        Console.WriteLine();
+        for (int i = 0; i < duration / 10; i++)
+        {
+            Console.Write("Breathe in...");
+            ShowCountDown(1000);
+            Console.WriteLine();
+            Console.Write("Now breathe out...");
+            ShowCountDown(1000);
+            Console.WriteLine();
+            Console.WriteLine();
+        }
 
-        Console.Write("Breathe out...");
-        ShowCountDown(5);
-        Console.WriteLine();
+        DisplayEndingMessage();
+        ShowSpinner(500);
+        Console.Clear();
     }
 }
