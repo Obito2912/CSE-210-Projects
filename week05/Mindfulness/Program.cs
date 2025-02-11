@@ -1,3 +1,8 @@
+// I added a validation feature to the program. If the user makes the mistake 
+// of typing something that is not a number, the program won't crash and will
+// advise the user to type a number, if the number is not within the range,
+// it will do the same.
+
 using System;
 using System.Security.Cryptography.X509Certificates;
 
@@ -14,7 +19,7 @@ class Program
             "Think of a time when you helped someone in need",
             "Think of a time when you did something truly selfless"
         ];
-        List<string> reflectingQuestions = 
+        List<string> reflectingQuestions =
         [
             "Why was this experience meaningful to you?",
             "Have you ever done anything like this before?",
@@ -28,7 +33,7 @@ class Program
         ];
 
         // ================================== Listing Prompts ==================================
-        
+
         List<string> listingPrompts =
         [
             "Who are people that you appreciate?",
@@ -37,7 +42,7 @@ class Program
             "When have you felt the Holy Ghost this month?",
             "Who are some of your personal heroes?"
         ];
-        
+
         // ================================== Breathing Activity Instance ==================================
         string breathingName = "Breathing Activity";
         string breathingDescription = "This activity will help you relax by walking you through breathing in and out slowly. Clear your mind and focus on your breathing.";
@@ -57,41 +62,72 @@ class Program
         int listingCount = 0;
         ListingActivity listingActivity = new ListingActivity(listingName, listingDescription, listingDuration, listingCount, listingPrompts);
 
-        // ================================== MENU OPTIONS ==================================
+
+
+        // ================================== Switch Statement ==================================
+
 
         int userChoice;
-        void displayOptions()
+
+        do
         {
+            userChoice = GetUserChoice();
+            switch (userChoice)
+            {
+                case 1:
+                    breathingActivity.Run();
+                    break;
+                case 2:
+                    reflectingActivity.Run();
+                    break;
+                case 3:
+                    listingActivity.Run();
+                    break;
+                default:
+                    Console.WriteLine("Invalid choice. Please try again");
+                    break;
+            }
+        }
+
+        while (userChoice != 4);
+
+
+
+        // ================================== Menu Options and Input Validation ==================================
+
+        static int GetUserChoice()
+        {
+            int userChoice;
+            bool isValidInput = false;
             Console.WriteLine("Menu Options:");
             Console.WriteLine("  1. Start breathing activity");
             Console.WriteLine("  2. Start reflecting activity");
             Console.WriteLine("  3. Start listing activity");
             Console.WriteLine("  4. Quit\n");
 
-            Console.Write("Select a choice from the menu: ");
-            userChoice = int.Parse(Console.ReadLine());
+            do
+            {
+                Console.Write("Select a choice from the menu: ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out userChoice))
+                {
+                    if (userChoice >= 1 && userChoice <= 4)
+                    {
+                        isValidInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please enter a number between 1 and 4.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a number");
+                }
+            } while (!isValidInput);
+
+            return userChoice;
         }
 
-        do
-        {
-            // Calling display options in a while loop until user chooses to quit
-            displayOptions();
-
-            // ================================== IF STATEMENTS ==================================
-
-            if (userChoice == 1)
-            {
-                breathingActivity.Run();
-            }
-            else if (userChoice == 2)
-            {
-                reflectingActivity.Run();
-            }
-            else if (userChoice == 3)
-            {
-                listingActivity.Run();
-            }
-
-        } while (userChoice != 4);
     }
 }
