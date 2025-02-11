@@ -1,5 +1,64 @@
 ===== Explain the meaning of Inheritance =====
 
 Is the ability that allow subclasses to obtain the attributes
-and methods from their parent class using dot notation after
-creating an instance of the subclass.
+and methods from their parent class. It's like if they were there
+but they are not. They simply pass from the parent to the subclasses.
+
+
+
+===== Highlight a benefit of Inheritance =====
+
+One of the benefits is that you don't have to type the same code again.
+If you have it in your parent class it automatically goes to the
+subclass if the proper syntax is added. That also means less code to type.
+
+
+
+===== Provide an application of Inheritance =====
+
+If I have a Laptop class with attributes like 'brand', model, and 'price',
+maybe also a method to display all attributes. I can then create a 
+LaptopFeatures subclass that will inherit those attributes and methods
+and according to the model I will add features to it without the need
+of being redundant and duplicate the code from my parent class because
+my subclass has inherited everything from it.
+
+
+
+===== Use a code example of Inheritance from the program you wrote =====
+
+This is part of my parent class:
+
+public class Activity
+{
+    private string _name;
+    private string _description;
+    private int _duration;
+
+    public Activity(string name, string description, int duration)
+    {
+        _name = name;
+        _description = description;
+        _duration = duration;
+    }
+}
+
+And this is part of my BreathingActivity subclass:
+
+public class BreathingActivity : Activity
+{
+    public BreathingActivity(string name, string description, int duration) : base(name, description, duration)
+    {
+
+    }
+
+    public void Run()
+    {
+
+        DisplayStartingMessage();
+        Console.WriteLine($"{GetDescription()}\n");
+    }
+}
+
+As you can see, I used the 'base' keyword on my constructor and then I was able to call the GetDescription()
+function inside my Run() function even though it is not initialized or defined in my subclass.
