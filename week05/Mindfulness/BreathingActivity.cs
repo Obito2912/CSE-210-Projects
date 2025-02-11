@@ -7,11 +7,9 @@ public class BreathingActivity : Activity
 
     public void Run()
     {
-        string description = GetDescription();
-        // int duration = GetDuration();
 
         DisplayStartingMessage();
-        Console.WriteLine($"{description}\n");
+        Console.WriteLine($"{GetDescription()}\n");
 
         Console.Write("How long, in seconds, would you like for your session? ");
         int duration = int.Parse(Console.ReadLine());

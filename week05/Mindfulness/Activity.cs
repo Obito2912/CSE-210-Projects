@@ -45,7 +45,7 @@ public class Activity
 
     public void DisplayStartingMessage()
     {
-        Console.WriteLine($"\nWelcome to the {GetName()}");
+        Console.WriteLine($"Welcome to the {GetName()}\n");
     }
 
     public void DisplayEndingMessage()
