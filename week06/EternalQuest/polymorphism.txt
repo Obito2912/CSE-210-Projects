@@ -1,0 +1,50 @@
+========================================= Explain the meaning of Polymorphism =========================================
+
+It is a programming feature that allows the programmer to be able to change the behavior of methods in derived classes.
+
+
+========================================= Highlight a benefit of Polymorphism =========================================
+
+One of the benefits of applying polymorphism to our code is that it helps the developer to keep the code more
+maintainable and very flexible since, if applied, we can be able to update any method inherited from the base
+class without interfering with other subclasses.
+
+
+======================================= Provide an application of Polymorphism =======================================
+
+If I have abstract PC as a base class with the abstract DisplayStorage method, then I have two derived classes for
+different PC models, I could use the override keyword to set one of the derived classes to have storage like: 
+SSD = 512GB and Console.WriteLine it. I can then change my DisplayStorage in the other derived class because it has
+an HDD and an SSD so I would Console.WriteLine both attributes. Later If I want a list in my Program.cs I can store
+both instances and call DisplayStorage. If I console it out we will see each instance with its corresponding method.
+
+
+============================ Use a code example of Polymorphism from the program you wrote ============================
+
+public abstract class Goal
+{
+public virtual string GetDetailsString()
+    {
+        string checkMark = IsComplete() ? "✔️" : " ";
+        return $"[{checkMark}] {_shortName} ({_description})";
+    }
+}
+
+This is an example of Polymorphism. I'm using the keyword 'virtual' because in this case, I don't have to override
+this method in all my derived classes.
+
+ I only need to do it in my ChecklistGoal subclass so I overwrote it like this:
+
+public class ChecklistGoal : Goal
+{
+    public override string GetDetailsString()
+    {        
+        string checkMark = IsComplete() ? "✔️" : " ";
+        return $"[{checkMark}] {GetShortName()} ({GetDescription()}) -- Currently completed: {GetAmountCompleted()}/{GetTarget()}";
+    }
+}
+
+This way, two of my three derived classes will inherit the first method while my third derived class (ChecklistGoal)
+will be overriding that and change to this last example. So when I create instances of each derived class in my Program.cs
+and use the GetDetailsString() method, SimpleGoal and EternalGoal will automatically use the method in the base class
+while ChecklistGoal will use the overridden one.

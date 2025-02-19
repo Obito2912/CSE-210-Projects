@@ -9,16 +9,23 @@ public class SimpleGoal : Goal
 
     public override void RecordEvent()
     {
-        
+        _isComplete = true;
+        int totalPoints = GetPoints() + GetPoints();
+        if (IsComplete())
+        {
+            Console.Write($"Congratulations! You have earned {GetPoints()} points!");
+            Console.WriteLine($"You now have {totalPoints} points.");
+            Console.Write($"\nYou have: {totalPoints} points");
+        }
     }
 
     public override bool IsComplete()
     {
-        throw new NotImplementedException();
+        return _isComplete;
     }
 
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"SimpleGoal:^{GetShortName()}^{GetDescription()}^{GetPoints()}^{IsComplete()}";
     }
 }

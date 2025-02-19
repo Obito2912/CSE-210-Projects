@@ -7,16 +7,17 @@ public class EternalGoal : Goal
 
     public override void RecordEvent()
     {
-        
+        int totalPoints = GetPoints() + GetPoints();
+        Console.WriteLine($"Congratulations! You have earned: {GetPoints()}");
     }
 
     public override bool IsComplete()
     {
-        throw new NotImplementedException();
+        return false;
     }
 
     public override string GetStringRepresentation()
     {
-        throw new NotImplementedException();
+        return $"EternalGoal:^{GetShortName()}^{GetDescription()}^{GetPoints()}";
     }
 }
