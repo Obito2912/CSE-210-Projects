@@ -1,0 +1,4 @@
+public class SwimmingExercise : Exercise
+{
+    
+}
