@@ -1,0 +1,60 @@
+============================= Briefly define the principle =============================
+Abstraction = It means to take something complex and make it look simpler even though it's not. It's basically hiding the complexity to make it simple.
+
+
+============================= How did you use Abstraction in one of your programs? =============================
+I made a journal project where I created classes for each functionality and then I used instances on my Program.cs to make it look simpler.
+
+
+============================= How did using that principle help that program become more flexible for future changes? =============================
+The code was more organize, everything was easier to read and it makes it more flexible because I can create instances. Which means I don't have
+to repeat all that complexity again in only a couple of lines of code.
+
+
+============================= Briefly define the principle =============================
+Encapsulation = This principle could save you a lot of pain in the future because it allows you to add a level of security to your attributes
+or methods so they can only be used inside the class they are created with the word private. If we need the attributes outside the class we can
+use setters and getters.
+
+
+============================= How did you use Encapsulation in one of your programs? =============================
+I made a Fraction project. Once the class was instantiated, thanks to the constructors I was able to add methods as parameters and I made use of the
+getters and setters inside the class for these methods to be able to work.
+
+
+============================= How did using that principle help that program become more flexible for future changes? =============================
+This approach made the program less vulnerable to mistakes from changing attributes or its values. So it helps me as a programmer to make less mistakes.
+
+
+============================= Briefly define the principle =============================
+Inheritance = This is the ability that classes have of having children basically. It allows you to make subclasses/derived classes and automatically
+be able to use any attribute or method from the base/parent class without having to repeat all the code again. If you want to use any attributes
+in the constructor of the child classes the base keyword has to be used with whatever attribute you want from the parent class.
+
+
+============================= How did you use Inheritance in one of your programs? =============================
+I made an Activity project that had 3 activities as derived classes, which means that I was able to inherit from the Activity base class all its attributes
+and methods.
+
+
+============================= How did using that principle help that program become more flexible for future changes? =============================
+This made the job a lot easier, this way I didn't have to be redundant with my code and I saved a lot of extra lines and time. I was able
+to use a countdown method with a spinner method but didn't have to repeat those lines of code because I just needed to call the method from the parent
+class and it works as if it was in the derived class.
+
+
+============================= Briefly define the principle =============================
+Polymorphism = This principle allows methods to be able to change in the subclasses. Words like abstract and virtual are needed for this principle
+to work. Once the method has one of these keywords they can be changed in derived classes.
+
+
+============================= How did you use Polymorphism in one of your programs? =============================
+I made a Shapes project. I only had an attribute which was color, so my subclasses had the 'color' attribute in common but what
+had to change was the GetArea method because the way you get the area for a circle is different that getting it for a square so I set the GetArea with
+the abstract keyword which tells the subclasses that they must have that method and they can be overridden with the 'override' keyword.
+
+
+============================= How did using that principle help that program become more flexible for future changes? =============================
+This is very powerful because it opens more opportunities for subclasses and redundant code is even less. The best part is that I made a list with
+all my shapes and called the GetArea method in a loop and it automatically recognized the method for each shape. If I want to make a change the
+method in one of my shapes subclasses I don't have to worry about the other ones because they are separate methods now after being overridden.
