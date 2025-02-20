@@ -8,7 +8,7 @@ public class EternalGoal : Goal
     public override void RecordEvent()
     {
         int totalPoints = GetPoints() + GetPoints();
-        Console.WriteLine($"Congratulations! You have earned: {GetPoints()}");
+        Console.WriteLine($"Congratulations! You have earned: {totalPoints}");
     }
 
     public override bool IsComplete()

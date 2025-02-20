@@ -44,7 +44,7 @@ public class ChecklistGoal : Goal
     public override void RecordEvent()
     {
         int totalPoints = GetPoints() + GetBonus();
-        
+
         if (IsComplete())
         {
             Console.Write($"Congratulations! You have earned {GetPoints()} points!");
@@ -59,18 +59,13 @@ public class ChecklistGoal : Goal
     }
 
     public override string GetDetailsString()
-    {        
-        while (!IsComplete())
-        {
-            _amountCompleted++;
-        }
-
+    {
         string checkMark = IsComplete() ? "✔️" : " ";
         return $"[{checkMark}] {GetShortName()} ({GetDescription()}) -- Currently completed: {GetAmountCompleted()}/{GetTarget()}";
     }
 
     public override string GetStringRepresentation()
     {
-        return $"ChecklistGoal:^{GetShortName()}^{GetDescription()}^{GetPoints()}^{GetTarget()}^{GetBonus()}^{GetAmountCompleted()}";
+        return $"ChecklistGoal:^{GetShortName()}^{GetDescription()}^{GetPoints()}^{GetBonus()}^{GetTarget()}^{GetAmountCompleted()}";
     }
 }

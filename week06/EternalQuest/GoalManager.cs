@@ -43,13 +43,13 @@ public class GoalManager
             if (!int.TryParse(userInput, out choice) || choice < 1 || choice > 6)
             {
                 Console.WriteLine("Invalid input. Please enter a number between 1 and 6.");
-                continue;
+                return;
             }
 
             switch (choice)
             {
                 case 1: CreateGoal(); break;
-                case 2: ListGoalNames(); break;
+                case 2: ListGoalDetails(); break;
                 case 3: SaveGoals(); break;
                 case 4: LoadGoals(); break;
                 case 5: RecordEvent(); break;
@@ -60,43 +60,42 @@ public class GoalManager
 
     public void DisplayPlayerInfo()
     {
-        Console.WriteLine($"You have {GetScore()} points.\n");
+        Console.WriteLine($"\nYou have {GetScore()} points.\n");
     }
 
     public void ListGoalNames()
     {
         Console.WriteLine("The goals are:");
-        foreach (var goal in GetGoals())
+        int numeration = 0;
+        foreach (var goal in _goals)
         {
-            Console.WriteLine(goal);
+            numeration++;
+            Console.WriteLine($"{numeration}. {goal.GetShortName()}");
         }
     }
 
     public void ListGoalDetails()
     {
-        if (GetGoals().Count == 0)
-        {
-            Console.WriteLine("No goals created yet.");
-            return;
-        }
-
-        Console.WriteLine("\nGoal Details:");
+        Console.WriteLine("The goals are:");
+        int numeration = 0;
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine(goal.GetDetailsString());
+            numeration++;
+            Console.WriteLine($"{numeration}. {goal.GetDetailsString()}");
         }
     }
 
     public void CreateGoal()
     {
         Console.WriteLine("The types of goals are:\n  1. Simple Goal\n  2. Eternal Goal\n  3. Checklist Goal");
-        Console.Write("What type of goal would you like to create: ");
+        Console.Write("What type of goal would you like to create? ");
 
         int choice;
         string userInput = Console.ReadLine();
         if (!int.TryParse(userInput, out choice) || choice < 1 || choice > 3)
         {
             Console.WriteLine("Invalid input. Please enter a number between 1 and 3.");
+            return;
         }
 
         Console.Write("What is the name of your goal? ");
@@ -132,41 +131,74 @@ public class GoalManager
 
     public void RecordEvent()
     {
-        if (_goals.Count == 0)
+        ListGoalNames();
+        Console.Write("\nWhich goal did you accomplish? ");
+        int choice = int.Parse(Console.ReadLine());
+
+        Goal selectedGoal = _goals[choice - 1];
+        selectedGoal.RecordEvent();
+
+        if (selectedGoal is not EternalGoal)
         {
-            Console.WriteLine("No goals to record.");
-            return;
+            _score += selectedGoal.GetPoints();
         }
-
-        Console.WriteLine("\nWhich goal did you accomplish?");
-        for (int i = 0; i < _goals.Count; i++)
-        {
-            Console.WriteLine($"{i + 1}. {_goals[i].GetDetailsString()}");
-        }
-
-        Console.Write("Enter the number of the completed goal: ");
-        if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > _goals.Count)
-        {
-            Console.WriteLine("Invalid selection.");
-            return;
-        }
-
-        Goal selectedGoal = _goals[choice - 1]; // Get the chosen goal
-        selectedGoal.RecordEvent(); // Call its `RecordEvent()` method
-
-        // Update _score based on the goal's points
-        _score += selectedGoal.GetPoints();
-
-        Console.WriteLine($"Your new score is: {_score} points.\n");
+        Console.WriteLine($"Congratulations! You have earned {_score} points!");
     }
 
     public void SaveGoals()
     {
+        Console.Write("What is the filename for the goal file? ");
+        string filename = Console.ReadLine();
 
+        try
+        {
+            using StreamWriter writer = new StreamWriter(filename);
+            writer.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                writer.WriteLine(goal.GetStringRepresentation());
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving goal(s): {ex.Message}");
+        }
     }
 
     public void LoadGoals()
     {
+        Console.Write("What is the filename for the goal file? ");
+        string filename = Console.ReadLine();
 
+
+        string[] lines = File.ReadAllLines(filename);
+
+        _score = int.Parse(lines[0]);
+        _goals.Clear();
+        Goal goal;
+
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] parts = lines[i].Split("^");
+
+            if (parts[0] == "SimpleGoal")
+            {
+                goal = new SimpleGoal(parts[1], parts[2], int.Parse(parts[3]));
+            }
+            else if (parts[0] == "EternalGoal")
+            {
+                goal = new EternalGoal(parts[1], parts[2], int.Parse(parts[3]));
+            }
+            else if (parts[0] == "ChecklistGoal")
+            {
+                goal = new ChecklistGoal(parts[1], parts[2], int.Parse(parts[3]), int.Parse(parts[4]), int.Parse(parts[5]));
+            }
+            else
+            {
+                Console.WriteLine($"Error: Failed to load goal from line: {lines[i]}");
+                continue;
+            }
+            _goals.Add(goal);
+        }
     }
 }
